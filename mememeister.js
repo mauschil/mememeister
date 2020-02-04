@@ -1,6 +1,8 @@
-// Create constant variables that initialise bot.
+// Initialize bot.
 const Discord = require('discord.js');
 const client = new Discord.Client();
+
+// Message thats printed to chat when user requests which templates are available. 
 const MemeCodes = "odns - one does not simply\n"
                 + "2buttons - two buttons\n"
                 + "mocksponge - mocking spongebob\n"
@@ -34,7 +36,7 @@ client.on('message', (receivedMessage) => {
         var textOne = splitCommand[2]; // The second text for the meme.
         var tempID = "";
       
-        // Check witch code requested meme is.
+        // Check which code requested meme is.
         switch (template) {
             case "odns":
                 tempID += "61579";
@@ -66,7 +68,9 @@ client.on('message', (receivedMessage) => {
         request.post({
           headers: {'content-type' : 'application/x-www-form-urlencoded'},
           url:     'https://api.imgflip.com/caption_image',
-          body: "template_id=" + tempID + "&username=fotogi&password=123456789!Abc&text0=" + textZero + "&text1=" + textOne
+          
+          // Replace USERNAME and PASSWORD with your actual imgflip account credentials.
+          body: "template_id=" + tempID + "&username=USERNAME&password=PASSWORD&text0=" + textZero + "&text1=" + textOne
         }, function(error, response, body){
             // Parse response into json.
             var json = JSON.parse(body);
@@ -78,5 +82,5 @@ client.on('message', (receivedMessage) => {
     }
 })
 
-// Login bot.
-client.login("NjcwNDU5MTU4OTczMzgyNjU2.Xiu0Gw.jJRr_zBvDAPWoyKxui0P7z9WyP4");
+// Login bot. Enter your discord bot token here. This is needed to actually login the bot.
+client.login("");
